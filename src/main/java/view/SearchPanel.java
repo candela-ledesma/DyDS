@@ -57,9 +57,14 @@ public class SearchPanel extends JPanel implements View {
     public void setUpView() {
         configureSearchResultsTextPane();
         configureSearchButton();
+        configureSearchButtonImage();
         configureSaveLocallyButton();
         configureSliderScore();
         scorePanel.setVisible(true);
+    }
+
+    private void configureSearchButtonImage() {
+        searchButtonImage.addActionListener(e -> presenter.searchSeries());
     }
 
     private void configureSearchResultsTextPane() {

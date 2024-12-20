@@ -42,11 +42,6 @@ public class SearchModel {
         Response<String> response = pageAPI.getExtractByPageID(searchResult.getPageID()).execute();
         String extract = jsonParser.parsePageExtract(response.body(), searchResult);
         searchResult.setExtract(textToHtml(extract));
-
-
-        String coverImageUrl = jsonParser.parseCoverImageUrl(response.body());
-        searchResult.setCoverImageUrl(coverImageUrl);
-
         return extract;
     }
 

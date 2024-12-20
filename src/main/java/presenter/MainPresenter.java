@@ -83,10 +83,10 @@ public class MainPresenter implements SeriesPresenter {
         for (Serie searchResult : results) {
             String title = searchResult.getTitle();
             boolean hasScore = model.hasScore(title);
-            String displayTitle = hasScore ? "★ " + title : title; // Add star icon if scored
+            String displayTitle = hasScore ? "★ " + title : title;
 
             SerieMenuItem menuItem = new SerieMenuItem(displayTitle, searchResult.getSnippet());
-           view.setMenuItem(menuItem);
+            view.setMenuItem(menuItem);
 
             menuItem.addActionListener(actionEvent -> {
                 lastSearchedSeries = searchResult;
