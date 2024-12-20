@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import retrofit2.Call;
+import retrofit2.Response;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -13,6 +16,15 @@ public class JsonParser {
 
     public JsonParser() {
         this.gson = new Gson();
+    }
+
+    public static JsonObject parseJson(Call<String> pageImagesByPageId) throws IOException {
+        Response<String> response = pageImagesByPageId.execute();
+        if (response.isSuccessful() && response.body() != null) {
+            return new Gson().fromJson(response.body(), JsonObject.class);
+        } else {
+            throw new IOException("Failed to fetch page images: " + response.errorBody().string());
+        }
     }
 
     public LinkedList<Serie> parseSearchResults(String jsonResponse) {
@@ -52,15 +64,4 @@ public class JsonParser {
         }
     }
 
-    public String parseCoverImageUrl(String body) {
-        JsonObject pages = gson.fromJson(body, JsonObject.class)
-                .get("query").getAsJsonObject()
-                .get("pages").getAsJsonObject();
-
-        Map.Entry<String, JsonElement> firstPage = pages.entrySet().iterator().next();
-        JsonObject page = firstPage.getValue().getAsJsonObject();
-        JsonObject thumbnail = page.get("thumbnail").getAsJsonObject();
-
-        return thumbnail.get("source").getAsString();
-    }
 }

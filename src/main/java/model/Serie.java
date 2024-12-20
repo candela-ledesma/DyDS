@@ -46,16 +46,8 @@ public class Serie {
         return pageID;
     }
 
-    public void setPageID(String pageID) {
-        this.pageID = pageID;
-    }
-
     public String getSnippet() {
         return snippet;
-    }
-
-    public void setSnippet(String snippet) {
-        this.snippet = snippet;
     }
 
     public int getScore() {

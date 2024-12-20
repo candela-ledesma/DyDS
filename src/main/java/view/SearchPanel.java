@@ -64,7 +64,7 @@ public class SearchPanel extends JPanel implements View {
     }
 
     private void configureSearchButtonImage() {
-        searchButtonImage.addActionListener(e -> presenter.searchSeries());
+        searchButtonImage.addActionListener(e -> presenter.searchSeriesImage());
     }
 
     private void configureSearchResultsTextPane() {
@@ -86,6 +86,10 @@ public class SearchPanel extends JPanel implements View {
 
     public void showResults(LinkedList<Serie> results) {
         presenter.handleShowResults(results, searchResultsTextPane, this);
+    }
+
+    public void showResultsImage(LinkedList<Serie> results) {
+        presenter.handleShowResultsImage(results, searchResultsTextPane, this);
     }
 
 
@@ -125,4 +129,6 @@ public class SearchPanel extends JPanel implements View {
     public void addMenuItem(SerieMenuItem menuItem) {
         resultItems.add(menuItem);
     }
+
+
 }

@@ -24,4 +24,24 @@ public class WikipediaPageAPIStub implements WikipediaPageAPI {
 
         return Calls.response(response);
     }
+
+    @Override
+    public Call<String> getPageImagesByPageId(int pageid) {
+        String response = """
+            {
+                "query": {
+                    "pages": {
+                        "12345": {
+                            "pageid": 12345,
+                            "title": "Breaking Bad",
+                            "thumbnail": {
+                                "source": "https://upload.wikimedia.org/wikipedia/en/6/61/Breaking_Bad_title_card.png"
+                            }
+                        }
+                    }
+                }
+            }
+            """;
+        return Calls.response(response);
+    }
 }

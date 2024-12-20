@@ -43,5 +43,10 @@ public interface SeriesPresenter {
     void updateScoredSeriesTable();
 
     void showSuccess(String message);
+
+    void searchSeriesImage();
+
+
+    void handleShowResultsImage(LinkedList<Serie> results, JTextPane searchResultsTextPane, SearchPanel searchPanel);
 }
 

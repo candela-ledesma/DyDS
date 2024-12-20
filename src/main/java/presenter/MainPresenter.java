@@ -102,6 +102,32 @@ public class MainPresenter implements SeriesPresenter {
         searchOptionsMenu.show(searchResultsTextPane, searchResultsTextPane.getX(), searchResultsTextPane.getY());
     }
 
+    @Override
+    public void handleShowResultsImage(LinkedList<Serie> results, JTextPane searchResultsTextPane, SearchPanel searchPanel) {
+        JPopupMenu searchOptionsMenu = new JPopupMenu("Search Results");
+
+        for (Serie searchResult : results) {
+            String title = searchResult.getTitle();
+            boolean hasScore = model.hasScore(title);
+            String displayTitle = hasScore ? "★ " + title : title;
+
+            SerieMenuItem menuItem = new SerieMenuItem(displayTitle, searchResult.getSnippet());
+            view.setMenuItem(menuItem);
+
+            menuItem.addActionListener(actionEvent -> {
+                lastSearchedSeries = searchResult;
+                try {
+                    getSelectedExtract(searchResult);
+                } catch (SQLException e) {
+                    showError(e.getMessage());
+                }
+            });
+
+            searchOptionsMenu.add(menuItem);
+        }
+        searchOptionsMenu.show(searchResultsTextPane, searchResultsTextPane.getX(), searchResultsTextPane.getY());
+    }
+
 
     @Override
     public void updateScoredSeriesTable() {
@@ -112,6 +138,13 @@ public class MainPresenter implements SeriesPresenter {
     public void showSuccess(String scoreSetSuccessfully) {
         view.showSuccessMessage(scoreSetSuccessfully);
     }
+
+    @Override
+    public void searchSeriesImage() {
+        searchPresenter.searchSeriesImage();
+    }
+
+
 
 
     @Override

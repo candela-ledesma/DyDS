@@ -115,6 +115,10 @@ public class MainView implements SeriesView, View {
         searchPanel.showResults(searchResults);
     }
 
+    public void showResultsImage(LinkedList<Serie> results) {
+        searchPanel.showResultsImage(results);
+    }
+
     @Override
     public void setStoredTextPane(String extract) {
         storagePanel.setStoredTextPane(extract);
@@ -175,4 +179,6 @@ public class MainView implements SeriesView, View {
     public void setMenuItem(SerieMenuItem menuItem) {
         searchPanel.addMenuItem(menuItem);
     }
+
+
 }
