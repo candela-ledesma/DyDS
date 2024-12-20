@@ -31,4 +31,9 @@ public class StoredModel {
     public void setDatabase(DataBase database) {
         this.database = database;
     }
+
+    public String getCoverImageUrl(String title) throws SQLException {
+        return database.getCoverImageUrl(title);
+    }
+
 }

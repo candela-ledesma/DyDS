@@ -51,4 +51,16 @@ public class JsonParser {
             return extract;
         }
     }
+
+    public String parseCoverImageUrl(String body) {
+        JsonObject pages = gson.fromJson(body, JsonObject.class)
+                .get("query").getAsJsonObject()
+                .get("pages").getAsJsonObject();
+
+        Map.Entry<String, JsonElement> firstPage = pages.entrySet().iterator().next();
+        JsonObject page = firstPage.getValue().getAsJsonObject();
+        JsonObject thumbnail = page.get("thumbnail").getAsJsonObject();
+
+        return thumbnail.get("source").getAsString();
+    }
 }

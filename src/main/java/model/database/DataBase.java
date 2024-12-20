@@ -24,4 +24,5 @@ public interface DataBase {
 
     List<Serie> getScoredSeries() throws SQLException;
 
+    String getCoverImageUrl(String title) throws SQLException;
 }

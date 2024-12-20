@@ -12,6 +12,16 @@ public class Serie {
     private String extract;
     private boolean hasScore;
 
+    private String coverImageUrl;
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
+    }
+
     public Serie(String title, String pageID, String snippet) {
         this.title = title;
         this.pageID = pageID;

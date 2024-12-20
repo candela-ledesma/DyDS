@@ -125,6 +125,14 @@ public class DataBaseImp implements DataBase {
     );
   }
 
+  @Override
+  public String getCoverImageUrl(String title) throws SQLException {
+    return executeQuery(
+            "SELECT cover_image_url FROM catalog WHERE title = ?",
+            rs -> rs.next() ? rs.getString("cover_image_url") : null,
+            title
+    );
+  }
 
 
   private static void createScoredTable(Statement statement) throws SQLException {
@@ -141,7 +149,7 @@ public class DataBaseImp implements DataBase {
 
   private void createCatalogTable(Statement statement) throws SQLException {
     statement.executeUpdate(
-            "CREATE TABLE IF NOT EXISTS catalog (id INTEGER, title STRING PRIMARY KEY, extract STRING, source INTEGER)"
+            "CREATE TABLE IF NOT EXISTS catalog (id INTEGER, title STRING PRIMARY KEY, extract STRING, source INTEGER, cover_image_url STRING)"
     );
   }
 

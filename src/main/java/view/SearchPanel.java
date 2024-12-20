@@ -19,6 +19,7 @@ public class SearchPanel extends JPanel implements View {
     private JLabel scoreLabel;
     private JSlider sliderScore;
     private JButton setScoreButton;
+    private JButton searchButtonImage;
     private LinkedList<SerieMenuItem> resultItems;
 
     public SearchPanel() {
