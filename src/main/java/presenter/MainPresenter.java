@@ -170,7 +170,6 @@ public class MainPresenter implements SeriesPresenter {
         searchPresenter.getSelectedExtract(searchResult);
     }
 
-
     @Override
     public String getScoreSerie(String title) throws SQLException {
         if (model.hasScore(view.getLastSearchedSeries().getTitle())) {

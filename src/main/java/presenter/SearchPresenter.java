@@ -19,32 +19,35 @@ public class SearchPresenter {
 
     public void searchSeries() {
         new Thread(() -> {
-            String seriesName = view.getSearchSerieField();
-            LinkedList<Serie> results = null;
-            try {
-                results = model.searchSeries(seriesName);
-            } catch (IOException e) {
-                view.showErrorMessage(e.getMessage());
-            }
-            view.showResults(results);
+            view.showResults(getListOfSeries());
         }).start();
     }
 
-    public void getSelectedExtract(Serie selectedResult) throws SQLException {
-        String extract = null;
+    public void searchSeriesImage() {
+        new Thread(() -> {
+            view.showResultsImage(getListOfSeries());
+        }).start();
+    }
+
+    private LinkedList<Serie> getListOfSeries() {
+        String seriesName = view.getSearchSerieField();
+        LinkedList<Serie> results = null;
         try {
-            extract = model.searchPageExtract(selectedResult);
+            results = model.searchSeries(seriesName);
         } catch (IOException e) {
             view.showErrorMessage(e.getMessage());
         }
-        view.setSearchResultTextPane(extract);
+        return results;
     }
 
-    public void getSelectedExtractImage(Serie searchResult) throws SQLException {
-        String extract = null;
+    public void getSelectedExtract(Serie selectedResult) throws SQLException {
+        view.setSearchResultTextPane(handleExtract(selectedResult));
+    }
+
+    public void getSelectedExtractImage(Serie searchResult) {
+        String extract = handleExtract(searchResult);
         String imageUrl = null;
         try {
-            extract = model.searchPageExtract(searchResult);
             imageUrl = model.getPageImageUrl(searchResult);
         } catch (IOException e) {
             view.showErrorMessage(e.getMessage());
@@ -52,17 +55,13 @@ public class SearchPresenter {
         view.setSearchResultTextPaneImage(extract, imageUrl);
     }
 
-
-    public void searchSeriesImage() {
-        new Thread(() -> {
-            String seriesName = view.getSearchSerieField();
-            LinkedList<Serie> results = null;
-            try {
-                results = model.searchSeries(seriesName);
-            } catch (IOException e) {
-                view.showErrorMessage(e.getMessage());
-            }
-            view.showResultsImage(results);
-        }).start();
+    private String handleExtract(Serie result) {
+        String extract = null;
+        try {
+            extract = model.searchPageExtract(result);
+        } catch (IOException e) {
+            view.showErrorMessage(e.getMessage());
+        }
+        return extract;
     }
 }
