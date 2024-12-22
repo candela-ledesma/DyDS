@@ -117,8 +117,9 @@ public class MainPresenter implements SeriesPresenter {
             menuItem.addActionListener(actionEvent -> {
                 lastSearchedSeries = searchResult;
                 try {
-                    getSelectedExtract(searchResult);
-                    getSelectedImage(searchResult);
+                    //getSelectedExtract(searchResult);
+                    //getSelectedImage(searchResult);
+                    getSelectedExtractImage(searchResult);
                 } catch (SQLException e) {
                     showError(e.getMessage());
                 }
@@ -127,6 +128,11 @@ public class MainPresenter implements SeriesPresenter {
             searchOptionsMenu.add(menuItem);
         }
         searchOptionsMenu.show(searchResultsTextPane, searchResultsTextPane.getX(), searchResultsTextPane.getY());
+    }
+
+    private void getSelectedExtractImage(Serie searchResult) throws SQLException {
+        System.out.println("Getting image for " + searchResult.getTitle());
+        searchPresenter.getSelectedExtractImage(searchResult);
     }
 
     @Override

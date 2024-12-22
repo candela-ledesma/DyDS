@@ -40,6 +40,18 @@ public class SearchPresenter {
         view.setSearchResultTextPane(extract);
     }
 
+    public void getSelectedExtractImage(Serie searchResult) throws SQLException {
+        String extract = null;
+        String imageUrl = null;
+        try {
+            extract = model.searchPageExtract(searchResult);
+            imageUrl = model.getPageImageUrl(searchResult);
+        } catch (IOException e) {
+            view.showErrorMessage(e.getMessage());
+        }
+        view.setSearchResultTextPaneImage(extract, imageUrl);
+    }
+
     public void getSerieImage(Serie selectedResult) {
         new Thread(() -> {
             String imageUrl = null;
@@ -64,4 +76,6 @@ public class SearchPresenter {
             view.showResultsImage(results);
         }).start();
     }
+
+
 }
