@@ -65,23 +65,21 @@ public class JsonParser {
     }
 
     public String parsePageImageUrl(String body, Serie searchResult) {
-        JsonObject jsonResponse = gson.fromJson(body, JsonObject.class);
-        JsonObject pages = jsonResponse.get("query").getAsJsonObject()
+        JsonObject pages = gson.fromJson(body, JsonObject.class)
+                .get("query").getAsJsonObject()
                 .get("pages").getAsJsonObject();
 
-        for (Map.Entry<String, JsonElement> entry : pages.entrySet()) {
-            JsonObject page = entry.getValue().getAsJsonObject();
+        Map.Entry<String, JsonElement> firstPage = pages.entrySet().iterator().next();
+        JsonObject page = firstPage.getValue().getAsJsonObject();
+        JsonElement pageImage = page.get("original");
 
-            if (page.get("pageid").getAsString().equals(searchResult.getPageID())) {
-                JsonObject thumbnail = page.getAsJsonObject("thumbnail");
-
-                if (thumbnail != null && thumbnail.has("source")) {
-                    return thumbnail.get("source").getAsString();
-                }
-            }
+        if (pageImage == null) {
+            return "No Results";
+        } else {
+            return pageImage.getAsJsonObject().get("source").getAsString();
         }
-
-        return "No image available";
     }
+
+
 
 }

@@ -133,17 +133,14 @@ public class SearchPanel extends JPanel implements View {
     }
 
 
-    // Método para mostrar la imagen
     public void setSearchResultImage(String imageUrl) {
         imageLbl.setVisible(true);
         try {
-            // Cargamos la imagen desde la URL
             ImageIcon imageIcon = new ImageIcon(new java.net.URL(imageUrl));
             Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH); // Escalamos la imagen
-            imageLbl.setIcon(new ImageIcon(image)); // Establecemos la imagen en el JLabel
+            imageLbl.setIcon(new ImageIcon(image));
         } catch (Exception e) {
-            // Si ocurre un error, mostramos un texto predeterminado
-            imageLbl.setText("Image not available");
+            imageLbl.setText(imageUrl);
         }
     }
 }

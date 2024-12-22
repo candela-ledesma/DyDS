@@ -46,6 +46,7 @@ public class SearchModel {
     }
 
     String searchPageImage(Serie searchResult) throws IOException {
+        System.out.println("searchPageImage " + searchResult.getTitle());
         int pageId = Integer.parseInt(searchResult.getPageID());
         Response<String> response = pageAPI.getPageImagesByPageId(pageId).execute();
         if (response.body() == null) {
@@ -54,6 +55,7 @@ public class SearchModel {
             System.out.println("Image found for " + searchResult.getTitle());
         }
         String imageUrl = jsonParser.parsePageImageUrl(response.body(), searchResult);
+        System.out.println("Image URL: " + imageUrl);
         searchResult.setCoverImageUrl(imageUrl);
         return imageUrl;
     }
