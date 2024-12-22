@@ -54,7 +54,7 @@ public class SearchModel {
         }else{
             System.out.println("Image found for " + searchResult.getTitle());
         }
-        String imageUrl = jsonParser.parsePageImageUrl(response.body(), searchResult);
+        String imageUrl = jsonParser.parsePageImageUrl(response.body());
         System.out.println("Image URL: " + imageUrl);
         searchResult.setCoverImageUrl(imageUrl);
         return imageUrl;

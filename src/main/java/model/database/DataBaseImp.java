@@ -91,12 +91,6 @@ public class DataBaseImp implements DataBase {
 
   @Override
   public void saveInfo(String title, String extract, String imageUrl) throws SQLException {
-    System.out.println("image url: " + imageUrl);
-
-    System.out.println("title: " + title);
-
-    System.out.println("extract: " + extract);
-
     String content = "<html><body>";
     if (imageUrl != null) {
       content += "<img src='" + imageUrl + "' width='200' height='200'><br>";
@@ -147,9 +141,6 @@ public class DataBaseImp implements DataBase {
             + "updated_at DATETIME DEFAULT CURRENT_TIMESTAMP)";
     statement.executeUpdate(createTableSQL);
   }
-
-
-
 
   private void createCatalogTable(Statement statement) throws SQLException {
     statement.executeUpdate(

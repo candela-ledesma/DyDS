@@ -64,7 +64,7 @@ public class JsonParser {
         }
     }
 
-    public String parsePageImageUrl(String body, Serie searchResult) {
+    public String parsePageImageUrl(String body) {
         JsonObject pages = gson.fromJson(body, JsonObject.class)
                 .get("query").getAsJsonObject()
                 .get("pages").getAsJsonObject();
