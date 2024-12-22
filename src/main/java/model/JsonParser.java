@@ -65,29 +65,22 @@ public class JsonParser {
     }
 
     public String parsePageImageUrl(String body, Serie searchResult) {
-        // Parseamos el JSON completo
         JsonObject jsonResponse = gson.fromJson(body, JsonObject.class);
-
-        // Navegamos al objeto "pages" dentro de "query"
         JsonObject pages = jsonResponse.get("query").getAsJsonObject()
                 .get("pages").getAsJsonObject();
 
-        // Iteramos por las entradas de "pages" para buscar la página que coincide con el ID
         for (Map.Entry<String, JsonElement> entry : pages.entrySet()) {
             JsonObject page = entry.getValue().getAsJsonObject();
 
-            // Comparamos el pageid con el de la Serie
             if (page.get("pageid").getAsString().equals(searchResult.getPageID())) {
                 JsonObject thumbnail = page.getAsJsonObject("thumbnail");
 
-                // Verificamos si existe un campo "source" dentro de "thumbnail"
                 if (thumbnail != null && thumbnail.has("source")) {
                     return thumbnail.get("source").getAsString();
                 }
             }
         }
 
-        // Si no encontramos un thumbnail, retornamos un valor por defecto o indicamos ausencia
         return "No image available";
     }
 

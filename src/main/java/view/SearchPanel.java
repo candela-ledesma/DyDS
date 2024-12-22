@@ -5,6 +5,7 @@ import presenter.SeriesPresenter;
 import presenter.MainPresenter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
@@ -20,6 +21,7 @@ public class SearchPanel extends JPanel implements View {
     private JSlider sliderScore;
     private JButton setScoreButton;
     private JButton searchButtonImage;
+    private JLabel imageLbl;
     private LinkedList<SerieMenuItem> resultItems;
 
     public SearchPanel() {
@@ -131,7 +133,17 @@ public class SearchPanel extends JPanel implements View {
     }
 
 
+    // Método para mostrar la imagen
     public void setSearchResultImage(String imageUrl) {
-        searchResultsTextPane.setText("<img src=\"" + imageUrl + "\">");
+        imageLbl.setVisible(true);
+        try {
+            // Cargamos la imagen desde la URL
+            ImageIcon imageIcon = new ImageIcon(new java.net.URL(imageUrl));
+            Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH); // Escalamos la imagen
+            imageLbl.setIcon(new ImageIcon(image)); // Establecemos la imagen en el JLabel
+        } catch (Exception e) {
+            // Si ocurre un error, mostramos un texto predeterminado
+            imageLbl.setText("Image not available");
+        }
     }
 }
