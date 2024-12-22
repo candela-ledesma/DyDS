@@ -2,22 +2,6 @@ package utils;
 
 public class HtmlTextFormatter {
 
-    public static String textToHtml(String text) {
-
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("<font face=\"arial\">");
-
-        String fixedText = text
-                .replace("'", "`");
-
-        builder.append(fixedText);
-
-        builder.append("</font>");
-
-        return builder.toString();
-    }
-
     public static String textToHtmlWithImage(String text, String imageUrl) {
 
         StringBuilder builder = new StringBuilder();
@@ -32,6 +16,26 @@ public class HtmlTextFormatter {
                 .replace("'", "`");
 
         builder.append(fixedText);
+
+        builder.append("</body></html>");
+
+        return builder.toString();
+    }
+
+    public static String textToHtmlWithHyperlink(String text, String hyperlink) {
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("<html><body>");
+
+        String fixedText = text
+                .replace("'", "`");
+
+        builder.append(fixedText);
+
+        builder.append("<br>");
+
+        builder.append("<a href=\"").append(hyperlink).append("\">").append(hyperlink).append("</a>");
 
         builder.append("</body></html>");
 
