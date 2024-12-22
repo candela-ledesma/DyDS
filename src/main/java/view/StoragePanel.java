@@ -2,6 +2,7 @@ package view;
 import presenter.MainPresenter;
 
 import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
 
 import utils.HtmlTextFormatter;
 
@@ -45,8 +46,20 @@ public class StoragePanel extends JPanel implements View {
 
     private void setUpStoredInfoTextPane() {
         storedInfoTextPane.setContentType("text/html");
-        storedInfoTextPane.setEditable(true);
+        storedInfoTextPane.setEditable(false);
+
+        storedInfoTextPane.addHyperlinkListener(event -> {
+            if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                try {
+                    java.awt.Desktop.getDesktop().browse(event.getURL().toURI());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Failed to open the link: " + event.getURL(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
     }
+
 
     void setUpPopupMenu() {
         JPopupMenu storedInfoPopup = new JPopupMenu();

@@ -15,7 +15,7 @@ public class TestDataBase implements DataBase {
     }
 
     @Override
-    public void saveInfo(String title, String text, String imageUrl) throws SQLException {
+    public void saveInfo(String title, String text, String imageUrl, String wikiUrl) throws SQLException {
         data.put(title, text);
     }
 

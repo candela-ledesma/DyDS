@@ -20,7 +20,7 @@ class StoredModelTest {
 
     @Test
     void testSaveLocallyInfo() throws SQLException {
-        storedModel.saveLocally("Breaking Bad", "Un pelado cocina metanfetaminas con su ex alumno",null);
+        storedModel.saveLocally("Breaking Bad", "Un pelado cocina metanfetaminas con su ex alumno",null, null);
         assertTrue(testDataBase.getTitles().contains("Breaking Bad"));
     }
 

@@ -6,6 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.HtmlTextFormatter.*;
+
 
 public class DataBaseImp implements DataBase {
 
@@ -90,17 +92,25 @@ public class DataBaseImp implements DataBase {
   }
 
   @Override
-  public void saveInfo(String title, String extract, String imageUrl) throws SQLException {
-    String content = "<html><body>";
-    if (imageUrl != null) {
-      content += "<img src='" + imageUrl + "' width='200' height='200'><br>";
+  public void saveInfo(String title, String extract, String imageUrl, String wikiUrl) throws SQLException {
+
+    String content;
+
+    if(imageUrl != null && wikiUrl != null){
+      content = textToHtmlWithImageAndHyperLink(extract, imageUrl, wikiUrl);
+    }else if(imageUrl != null){
+      content = textToHtmlWithImage(extract, imageUrl);
+    }else if(wikiUrl != null){
+      content = textToHtmlWithHyperlink(extract, wikiUrl);
+    }else{
+        content = extract;
     }
-    content += extract + "</body></html>";
 
     executeUpdate(
             "REPLACE INTO catalog (id, title, extract, source) VALUES (NULL, ?, ?, 1)",
             title, content
     );
+
   }
 
 
