@@ -5,6 +5,7 @@ import presenter.SeriesPresenter;
 import presenter.MainPresenter;
 
 import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -31,6 +32,7 @@ public class SearchPanel extends JPanel implements View {
         this.setVisible(true);
         this.add(searchPanel);
         resultItems = new LinkedList<>();
+        configureSearchResultsTextPane();
     }
 
     @Override
@@ -54,9 +56,7 @@ public class SearchPanel extends JPanel implements View {
         });
     }
 
-
     public void setUpView() {
-        configureSearchResultsTextPane();
         configureSearchButton();
         configureSearchButtonImage();
         configureSaveLocallyButton();
@@ -64,12 +64,23 @@ public class SearchPanel extends JPanel implements View {
         scorePanel.setVisible(true);
     }
 
-    private void configureSearchButtonImage() {
-        searchButtonImage.addActionListener(e -> presenter.searchSeriesImage());
-    }
-
     private void configureSearchResultsTextPane() {
         searchResultsTextPane.setContentType("text/html");
+        searchResultsTextPane.setEditable(false);
+
+        searchResultsTextPane.addHyperlinkListener(e -> {
+            if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                try {
+                    Desktop.getDesktop().browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    presenter.showError("Error opening browser");
+                }
+            }
+        });
+    }
+
+    private void configureSearchButtonImage() {
+        searchButtonImage.addActionListener(e -> presenter.searchSeriesImage());
     }
 
     private void configureSearchButton() {
@@ -93,7 +104,6 @@ public class SearchPanel extends JPanel implements View {
         presenter.handleShowResultsImage(results, searchResultsTextPane, this);
     }
 
-
     private void updateScoreLabel(String value) {
         scoreLabel.setText("Score: " + value);
     }
@@ -101,7 +111,6 @@ public class SearchPanel extends JPanel implements View {
     public void setPresenter(MainPresenter presenter) {
         this.presenter = presenter;
     }
-
 
     public String getsSearchSerieField() {
         return searchSerieField.getText();
