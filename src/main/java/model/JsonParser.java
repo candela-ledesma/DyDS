@@ -18,15 +18,6 @@ public class JsonParser {
         this.gson = new Gson();
     }
 
-    public static JsonObject parseJson(Call<String> pageImagesByPageId) throws IOException {
-        Response<String> response = pageImagesByPageId.execute();
-        if (response.isSuccessful() && response.body() != null) {
-            return new Gson().fromJson(response.body(), JsonObject.class);
-        } else {
-            throw new IOException("Failed to fetch page images: " + response.errorBody().string());
-        }
-    }
-
     public LinkedList<Serie> parseSearchResults(String jsonResponse) {
         LinkedList<Serie> searchResults = new LinkedList<>();
         JsonObject query = gson.fromJson(jsonResponse, JsonObject.class)
