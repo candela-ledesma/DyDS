@@ -25,7 +25,6 @@ public class StoragePanel extends JPanel implements View {
 
     private void initComponents() {
         this.setVisible(true);
-
         this.add(storagePanel);
     }
 

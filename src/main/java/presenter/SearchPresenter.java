@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import static utils.HtmlTextFormatter.textToHtmlWithHyperlink;
-import static utils.HtmlTextFormatter.textToHtmlWithImage;
+import static utils.HtmlTextFormatter.*;
 
 public class SearchPresenter {
     private final MainView view;
@@ -50,6 +49,7 @@ public class SearchPresenter {
     }
 
     public void getSelectedExtractImage(Serie searchResult) throws SQLException {
+        String wikiUrl = searchResult.getUrl();
         String extract = handleExtract(searchResult);
         String imageUrl = null;
         try {
@@ -57,7 +57,7 @@ public class SearchPresenter {
         } catch (IOException e) {
             view.showErrorMessage(e.getMessage());
         }
-        view.setSearchResultTextPane(textToHtmlWithImage(extract, imageUrl));
+        view.setSearchResultTextPane(textToHtmlWithImageAndHyperLink(extract, imageUrl, wikiUrl));
     }
 
     private String handleExtract(Serie result) {
