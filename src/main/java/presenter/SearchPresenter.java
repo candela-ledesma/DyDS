@@ -40,6 +40,18 @@ public class SearchPresenter {
         view.setSearchResultTextPane(extract);
     }
 
+    public void getSerieImage(Serie selectedResult) {
+        new Thread(() -> {
+            String imageUrl = null;
+            try {
+                imageUrl = model.getPageImageUrl(selectedResult);
+            } catch (IOException e) {
+                view.showErrorMessage(e.getMessage());
+            }
+            view.setSearchResultImage(imageUrl);
+        }).start();
+    }
+
     public void searchSeriesImage() {
         new Thread(() -> {
             String seriesName = view.getSearchSerieField();
@@ -51,9 +63,5 @@ public class SearchPresenter {
             }
             view.showResultsImage(results);
         }).start();
-    }
-
-    public void showResultsImage(LinkedList<Serie> results) {
-        view.showResultsImage(results);
     }
 }

@@ -131,4 +131,7 @@ public class SearchPanel extends JPanel implements View {
     }
 
 
+    public void setSearchResultImage(String imageUrl) {
+        searchResultsTextPane.setText("<img src=\"" + imageUrl + "\">");
+    }
 }

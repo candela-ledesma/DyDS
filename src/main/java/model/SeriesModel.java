@@ -32,4 +32,6 @@ public interface SeriesModel {
     String getExtract(String selectedTitle);
 
     void setPresenter(MainPresenter seriesPresenter);
+
+    String getPageImageUrl(Serie searchResult) throws IOException;
 }

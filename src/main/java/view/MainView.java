@@ -181,4 +181,7 @@ public class MainView implements SeriesView, View {
     }
 
 
+    public void setSearchResultImage(String imageUrl) {
+        searchPanel.setSearchResultImage(imageUrl);
+    }
 }

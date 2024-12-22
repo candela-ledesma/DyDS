@@ -118,6 +118,7 @@ public class MainPresenter implements SeriesPresenter {
                 lastSearchedSeries = searchResult;
                 try {
                     getSelectedExtract(searchResult);
+                    getSelectedImage(searchResult);
                 } catch (SQLException e) {
                     showError(e.getMessage());
                 }
@@ -126,6 +127,16 @@ public class MainPresenter implements SeriesPresenter {
             searchOptionsMenu.add(menuItem);
         }
         searchOptionsMenu.show(searchResultsTextPane, searchResultsTextPane.getX(), searchResultsTextPane.getY());
+    }
+
+    @Override
+    public void searchSeriesImage() {
+        searchPresenter.searchSeriesImage();
+    }
+
+    private void getSelectedImage(Serie searchResult) {
+        System.out.println("Getting image for " + searchResult.getTitle());
+        searchPresenter.getSerieImage(searchResult);
     }
 
 
@@ -138,12 +149,6 @@ public class MainPresenter implements SeriesPresenter {
     public void showSuccess(String scoreSetSuccessfully) {
         view.showSuccessMessage(scoreSetSuccessfully);
     }
-
-    @Override
-    public void searchSeriesImage() {
-        searchPresenter.searchSeriesImage();
-    }
-
 
 
 

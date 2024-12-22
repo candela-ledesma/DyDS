@@ -1,7 +1,5 @@
 package model;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import model.API.WikipediaPageAPI;
 import model.API.WikipediaSearchAPI;
 import retrofit2.Response;
@@ -47,11 +45,13 @@ public class SearchModel {
         return extract;
     }
 
-    private String getPageImageUrl(int pageId) throws IOException {
-        JsonObject page = JsonParser.parseJson(pageAPI.getPageImagesByPageId(pageId));
-        JsonObject pages = page.get("query").getAsJsonObject().get("pages").getAsJsonObject();
-        JsonObject pageData = pages.entrySet().iterator().next().getValue().getAsJsonObject();
-        return pageData.get("thumbnail").getAsJsonObject().get("source").getAsString();
+    String searchPageImage(Serie searchResult) throws IOException {
+        int pageId = Integer.parseInt(searchResult.getPageID());
+        Response<String> response = pageAPI.getPageImagesByPageId(pageId).execute();
+        String imageUrl = jsonParser.parsePageImageUrl(response.body(), searchResult);
+        searchResult.setCoverImageUrl(imageUrl);
+        return imageUrl;
     }
+
 
 }

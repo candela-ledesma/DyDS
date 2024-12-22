@@ -64,4 +64,22 @@ public class JsonParser {
         }
     }
 
+    public String parsePageImageUrl(String body, Serie searchResult) {
+        JsonObject pages = gson.fromJson(body, JsonObject.class)
+                .get("query").getAsJsonObject()
+                .get("pages").getAsJsonObject();
+
+        Map.Entry<String, JsonElement> firstPage = pages.entrySet().iterator().next();
+        JsonObject page = firstPage.getValue().getAsJsonObject();
+        JsonArray images = page.get("images").getAsJsonArray();
+
+        for (JsonElement element : images) {
+            JsonObject image = element.getAsJsonObject();
+            if (image.get("title").getAsString().contains("jpg")) {
+                return image.get("url").getAsString();
+            }
+        }
+
+        return null;
+    }
 }

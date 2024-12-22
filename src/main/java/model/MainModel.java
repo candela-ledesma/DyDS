@@ -54,6 +54,10 @@ public class MainModel implements SeriesModel {
         return searchModel.searchPageExtract(searchResult);
     }
 
+    @Override
+    public String getPageImageUrl(Serie searchResult) throws IOException {
+        return searchModel.searchPageImage(searchResult);
+    }
 
     @Override
     public void deleteSavedInfo(String title) {
@@ -142,5 +146,6 @@ public class MainModel implements SeriesModel {
     public void setPresenter(MainPresenter seriesPresenter) {
         this.presenter = seriesPresenter;
     }
+
 
 }
