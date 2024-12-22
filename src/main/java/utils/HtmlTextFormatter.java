@@ -9,11 +9,31 @@ public class HtmlTextFormatter {
         builder.append("<font face=\"arial\">");
 
         String fixedText = text
-                .replace("'", "`"); //Replace to avoid SQL errors, we will have to find a workaround.
+                .replace("'", "`");
 
         builder.append(fixedText);
 
         builder.append("</font>");
+
+        return builder.toString();
+    }
+
+    public static String textToHtmlWithImage(String text, String imageUrl) {
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("<html><body>");
+
+        if (imageUrl != null) {
+            builder.append("<img src='").append(imageUrl).append("' width='200' height='200'><br>");
+        }
+
+        String fixedText = text
+                .replace("'", "`");
+
+        builder.append(fixedText);
+
+        builder.append("</body></html>");
 
         return builder.toString();
     }

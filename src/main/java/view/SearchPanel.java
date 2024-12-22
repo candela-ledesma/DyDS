@@ -10,6 +10,8 @@ import java.awt.*;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
+import static utils.HtmlTextFormatter.textToHtmlWithImage;
+
 public class SearchPanel extends JPanel implements View {
     private JPanel searchPanel;
     private JTextField searchSerieField;
@@ -142,7 +144,7 @@ public class SearchPanel extends JPanel implements View {
     }
 
     public void setSearchResultTextPaneImage(String extract, String imageUrl) {
-        String htmlContent = "<html><body><img src='" + imageUrl + "' width='200' height='200'><br>" + extract + "</body></html>";
+        String htmlContent = textToHtmlWithImage(extract, imageUrl);
         setSearchResultTextPane(htmlContent);
     }
 }
