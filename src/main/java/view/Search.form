@@ -30,6 +30,8 @@
           <component id="11fa5" class="javax.swing.JTextPane" binding="searchResultsTextPane">
             <constraints/>
             <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
               <text value=""/>
             </properties>
           </component>

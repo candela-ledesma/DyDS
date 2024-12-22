@@ -10,17 +10,7 @@ public class Serie {
     private int score;
     private Date lastUpdated;
     private String extract;
-    private boolean hasScore;
-
     private String coverImageUrl;
-
-    public String getCoverImageUrl() {
-        return coverImageUrl;
-    }
-
-    public void setCoverImageUrl(String coverImageUrl) {
-        this.coverImageUrl = coverImageUrl;
-    }
 
     public Serie(String title, String pageID, String snippet) {
         this.title = title;
@@ -31,7 +21,6 @@ public class Serie {
     public Serie(String title, int score) {
         this.title = title;
         this.score = score;
-        this.hasScore = true;
     }
 
     public String getTitle() {
@@ -56,7 +45,6 @@ public class Serie {
 
     public void setScore(int score) {
         this.score = score;
-        this.hasScore = true;
     }
 
     public Date getLastUpdated() {
@@ -75,7 +63,15 @@ public class Serie {
         this.extract = extract;
     }
 
-    public boolean hasScore() {
-        return hasScore;
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
+    }
+
+    public String getUrl() {
+        return "https://en.wikipedia.org/?curid=" + pageID;
     }
 }

@@ -41,7 +41,10 @@ public class SearchPresenter {
     }
 
     public void getSelectedExtract(Serie selectedResult) throws SQLException {
-        view.setSearchResultTextPane(handleExtract(selectedResult));
+        String url = selectedResult.getUrl();
+        String extract = handleExtract(selectedResult);
+        String hyperlink = "<a href=\"" + url + "\">" + url + "</a>";
+        view.setSearchResultTextPane(extract + "<br>" + hyperlink);
     }
 
     public void getSelectedExtractImage(Serie searchResult) {
