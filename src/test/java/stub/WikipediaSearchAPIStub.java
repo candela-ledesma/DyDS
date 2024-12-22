@@ -30,30 +30,4 @@ public class WikipediaSearchAPIStub implements WikipediaSearchAPI {
         return Calls.response(response);
     }
 
-    @Override
-    public Call<String> getPageImages(String titles) {
-        String response = """
-            {
-                "query": {
-                    "pages": {
-                        "12345": {
-                            "pageid": 12345,
-                            "title": "Breaking Bad",
-                            "thumbnail": {
-                                "source": "https://upload.wikimedia.org/wikipedia/en/6/61/Breaking_Bad_title_card.png"
-                            }
-                        },
-                        "67890": {
-                            "pageid": 67890,
-                            "title": "Better Call Saul",
-                            "thumbnail": {
-                                "source": "https://upload.wikimedia.org/wikipedia/en/7/77/Better_Call_Saul_logo.png"
-                            }
-                        }
-                    }
-                }
-            }
-            """;
-        return Calls.response(response);
-    }
 }
