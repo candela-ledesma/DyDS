@@ -179,8 +179,4 @@ public class MainView implements SeriesView, View {
     public void setMenuItem(SerieMenuItem menuItem) {
         searchPanel.addMenuItem(menuItem);
     }
-
-    public void setSearchResultTextPaneImage(String extract, String imageUrl) {
-        searchPanel.setSearchResultTextPaneImage(extract, imageUrl);
-    }
 }

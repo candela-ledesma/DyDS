@@ -143,8 +143,4 @@ public class SearchPanel extends JPanel implements View {
         searchResultsTextPane.setCaretPosition(0);
     }
 
-    public void setSearchResultTextPaneImage(String extract, String imageUrl) {
-        String htmlContent = textToHtmlWithImage(extract, imageUrl);
-        setSearchResultTextPane(htmlContent);
-    }
 }
