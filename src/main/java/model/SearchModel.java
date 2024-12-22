@@ -48,6 +48,11 @@ public class SearchModel {
     String searchPageImage(Serie searchResult) throws IOException {
         int pageId = Integer.parseInt(searchResult.getPageID());
         Response<String> response = pageAPI.getPageImagesByPageId(pageId).execute();
+        if (response.body() == null) {
+            System.out.println("No image found for " + searchResult.getTitle());
+        }else{
+            System.out.println("Image found for " + searchResult.getTitle());
+        }
         String imageUrl = jsonParser.parsePageImageUrl(response.body(), searchResult);
         searchResult.setCoverImageUrl(imageUrl);
         return imageUrl;
