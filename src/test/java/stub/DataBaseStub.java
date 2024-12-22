@@ -22,7 +22,7 @@ public class DataBaseStub implements DataBase {
     }
 
     @Override
-    public void saveInfo(String title, String snippet) throws SQLException {
+    public void saveInfo(String title, String snippet, String imageUrl) throws SQLException {
         seriesExtracts.put(title, snippet);
     }
 

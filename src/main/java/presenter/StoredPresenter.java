@@ -46,9 +46,11 @@ public class StoredPresenter {
     }
 
     public void getStoredInfo() {
+        System.out.println("Getting stored info");
         new Thread(() -> {
             String selectedTitle = view.getSeletedSavedTitle();
             String extract = model.getExtract(selectedTitle);
+            System.out.println("Extract: " + extract);
             view.setStoredTextPane(extract);
         }).start();
     }

@@ -91,7 +91,7 @@ public class MainModel implements SeriesModel {
     @Override
     public void saveLocally() {
         try {
-            storedModel.saveLocally(presenter.getLastSearchedSeries().getTitle(), presenter.getLastSearchedSeries().getExtract());
+            storedModel.saveLocally(presenter.getLastSearchedSeries().getTitle(), presenter.getLastSearchedSeries().getExtract(), presenter.getLastSearchedSeries().getCoverImageUrl());
         } catch (SQLException e) {
             presenter.showError("Error saving locally");
         }

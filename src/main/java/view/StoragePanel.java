@@ -82,9 +82,9 @@ public class StoragePanel extends JPanel implements View {
         return storedSeriesComboBox.getSelectedItem().toString();
     }
 
-
     public void setStoredTextPane(String extract) {
-        storedInfoTextPane.setText(HtmlTextFormatter.textToHtml(extract));
+        storedInfoTextPane.setText(extract);
+        repaint();
     }
 
     public void deleteSelectedIndex() {

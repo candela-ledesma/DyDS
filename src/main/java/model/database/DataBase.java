@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DataBase {
 
-    void saveInfo(String title, String snippet) throws SQLException;
+    void saveInfo(String title, String extract, String imageUrl) throws SQLException;
 
     ArrayList<String> getTitles() throws SQLException;
 
@@ -24,5 +24,4 @@ public interface DataBase {
 
     List<Serie> getScoredSeries() throws SQLException;
 
-    String getCoverImageUrl(String title) throws SQLException;
 }

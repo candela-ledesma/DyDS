@@ -16,12 +16,12 @@ public class StoredModel {
         return database.getTitles().stream().sorted().toArray();
     }
 
-    public void saveStoredInfo(String title, String text) throws SQLException {
-        database.saveInfo(title, text);
+    public void saveLocally(String title, String extract, String imageUrl) throws SQLException {
+        database.saveInfo(title, extract, imageUrl);
     }
 
-    public void saveLocally(String title, String extract) throws SQLException {
-        database.saveInfo(title, extract);
+    public void saveStoredInfo(String title, String extract) throws SQLException {
+        database.saveInfo(title, extract, null);
     }
 
     public String getExtract(String title) throws SQLException {
@@ -31,5 +31,6 @@ public class StoredModel {
     public void setDatabase(DataBase database) {
         this.database = database;
     }
+
 
 }

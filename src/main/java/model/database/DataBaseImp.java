@@ -90,12 +90,25 @@ public class DataBaseImp implements DataBase {
   }
 
   @Override
-  public void saveInfo(String title, String extract) throws SQLException {
+  public void saveInfo(String title, String extract, String imageUrl) throws SQLException {
+    System.out.println("image url: " + imageUrl);
+
+    System.out.println("title: " + title);
+
+    System.out.println("extract: " + extract);
+
+    String content = "<html><body>";
+    if (imageUrl != null) {
+      content += "<img src='" + imageUrl + "' width='200' height='200'><br>";
+    }
+    content += extract + "</body></html>";
+
     executeUpdate(
             "REPLACE INTO catalog (id, title, extract, source) VALUES (NULL, ?, ?, 1)",
-            title, extract
+            title, content
     );
   }
+
 
   public void loadDatabase() {
     try (Connection connection = DriverManager.getConnection(DB_URL);
@@ -125,15 +138,6 @@ public class DataBaseImp implements DataBase {
     );
   }
 
-  @Override
-  public String getCoverImageUrl(String title) throws SQLException {
-    return executeQuery(
-            "SELECT cover_image_url FROM catalog WHERE title = ?",
-            rs -> rs.next() ? rs.getString("cover_image_url") : null,
-            title
-    );
-  }
-
 
   private static void createScoredTable(Statement statement) throws SQLException {
     String createTableSQL = "CREATE TABLE IF NOT EXISTS scored ("
@@ -149,7 +153,7 @@ public class DataBaseImp implements DataBase {
 
   private void createCatalogTable(Statement statement) throws SQLException {
     statement.executeUpdate(
-            "CREATE TABLE IF NOT EXISTS catalog (id INTEGER, title STRING PRIMARY KEY, extract STRING, source INTEGER, cover_image_url STRING)"
+            "CREATE TABLE IF NOT EXISTS catalog (id INTEGER, title STRING PRIMARY KEY, extract STRING, source INTEGER)"
     );
   }
 

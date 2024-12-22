@@ -15,7 +15,7 @@ public class TestDataBase implements DataBase {
     }
 
     @Override
-    public void saveInfo(String title, String text) throws SQLException {
+    public void saveInfo(String title, String text, String imageUrl) throws SQLException {
         data.put(title, text);
     }
 
@@ -28,6 +28,7 @@ public class TestDataBase implements DataBase {
     public String getExtract(String title) throws SQLException {
         return data.get(title);
     }
+
 
     @Override
     public  ArrayList<String> getTitles() throws SQLException {

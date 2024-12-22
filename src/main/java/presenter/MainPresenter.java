@@ -162,7 +162,6 @@ public class MainPresenter implements SeriesPresenter {
     @Override
     public void saveLocally() {
         storedPresenter.saveLocally();
-
     }
 
     @Override

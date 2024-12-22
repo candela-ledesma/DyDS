@@ -103,7 +103,6 @@ public class SearchPanel extends JPanel implements View {
     }
 
 
-
     public String getsSearchSerieField() {
         return searchSerieField.getText();
     }
@@ -132,7 +131,6 @@ public class SearchPanel extends JPanel implements View {
         searchResultsTextPane.setText(seriesContent);
         searchResultsTextPane.setCaretPosition(0);
     }
-
 
     public void setSearchResultTextPaneImage(String extract, String imageUrl) {
         String htmlContent = "<html><body><img src='" + imageUrl + "' width='200' height='200'><br>" + extract + "</body></html>";
