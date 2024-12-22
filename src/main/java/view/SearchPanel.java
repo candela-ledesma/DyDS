@@ -137,10 +137,12 @@ public class SearchPanel extends JPanel implements View {
         imageLbl.setVisible(true);
         try {
             ImageIcon imageIcon = new ImageIcon(new java.net.URL(imageUrl));
-            Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH); // Escalamos la imagen
+            Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
             imageLbl.setIcon(new ImageIcon(image));
+            imageLbl.repaint();
         } catch (Exception e) {
             imageLbl.setText(imageUrl);
         }
+
     }
 }
