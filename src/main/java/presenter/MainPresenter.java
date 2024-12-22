@@ -117,8 +117,6 @@ public class MainPresenter implements SeriesPresenter {
             menuItem.addActionListener(actionEvent -> {
                 lastSearchedSeries = searchResult;
                 try {
-                    //getSelectedExtract(searchResult);
-                    //getSelectedImage(searchResult);
                     getSelectedExtractImage(searchResult);
                 } catch (SQLException e) {
                     showError(e.getMessage());
@@ -131,7 +129,6 @@ public class MainPresenter implements SeriesPresenter {
     }
 
     private void getSelectedExtractImage(Serie searchResult) throws SQLException {
-        System.out.println("Getting image for " + searchResult.getTitle());
         searchPresenter.getSelectedExtractImage(searchResult);
     }
 
@@ -139,12 +136,6 @@ public class MainPresenter implements SeriesPresenter {
     public void searchSeriesImage() {
         searchPresenter.searchSeriesImage();
     }
-
-    private void getSelectedImage(Serie searchResult) {
-        System.out.println("Getting image for " + searchResult.getTitle());
-        searchPresenter.getSerieImage(searchResult);
-    }
-
 
     @Override
     public void updateScoredSeriesTable() {
@@ -197,7 +188,6 @@ public class MainPresenter implements SeriesPresenter {
             view.showErrorMessage(e.getMessage());
         }
     }
-
 
     public SeriesView getView() {
         return view;

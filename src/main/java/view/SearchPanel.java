@@ -21,7 +21,6 @@ public class SearchPanel extends JPanel implements View {
     private JSlider sliderScore;
     private JButton setScoreButton;
     private JButton searchButtonImage;
-    private JLabel imageLbl;
     private LinkedList<SerieMenuItem> resultItems;
 
     public SearchPanel() {
@@ -127,20 +126,6 @@ public class SearchPanel extends JPanel implements View {
 
     public void addMenuItem(SerieMenuItem menuItem) {
         resultItems.add(menuItem);
-    }
-
-
-    public void setSearchResultImage(String imageUrl) {
-        imageLbl.setVisible(true);
-        try {
-            ImageIcon imageIcon = new ImageIcon(new java.net.URL(imageUrl));
-            Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-            imageLbl.setIcon(new ImageIcon(image));
-            imageLbl.repaint();
-        } catch (Exception e) {
-            imageLbl.setText(imageUrl);
-        }
-
     }
 
     public void setSearchResultTextPane(String seriesContent) {
