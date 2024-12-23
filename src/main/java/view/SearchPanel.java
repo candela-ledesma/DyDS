@@ -98,11 +98,11 @@ public class SearchPanel extends JPanel implements View {
     }
 
     public void showResults(LinkedList<Serie> results) {
-        presenter.handleShowResults(results, searchResultsTextPane, this);
+        presenter.handleShowResults(results, searchResultsTextPane);
     }
 
     public void showResultsImage(LinkedList<Serie> results) {
-        presenter.handleShowResultsImage(results, searchResultsTextPane, this);
+        presenter.handleShowResultsImage(results, searchResultsTextPane);
     }
 
     private void updateScoreLabel(String value) {

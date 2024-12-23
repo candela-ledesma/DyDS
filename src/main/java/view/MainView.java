@@ -24,7 +24,6 @@ public class MainView implements SeriesView, View {
 
     @Override
     public void showView() {
-
         JFrame frame = new JFrame("TV Series");
         frame.setContentPane(contentPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -180,4 +179,17 @@ public class MainView implements SeriesView, View {
     public void setMenuItem(SerieMenuItem menuItem) {
         searchPanel.addMenuItem(menuItem);
     }
+
+    public void addMenuItem(SerieMenuItem menuItem, Serie searchResult) {
+        menuItem.addActionListener(actionEvent -> {
+           seriesPresenter.handleMenuItemClick(searchResult);
+        });
+    }
+
+    public void addMenuItemImage(SerieMenuItem menuItem, Serie searchResult) {
+        menuItem.addActionListener(actionEvent -> {
+            seriesPresenter.handleMenuItemClickImage(searchResult);
+        });
+    }
+
 }

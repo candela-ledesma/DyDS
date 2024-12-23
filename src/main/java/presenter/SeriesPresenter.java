@@ -38,14 +38,14 @@ public interface SeriesPresenter {
 
     void showError(String messageError);
 
-    void handleShowResults(LinkedList<Serie> results, JTextPane searchResultsTextPane, SearchPanel searchPanel);
+    void handleShowResults(LinkedList<Serie> results, JTextPane searchResultsTextPane);
 
     void updateScoredSeriesTable();
 
     void showSuccess(String message);
 
 
-    void handleShowResultsImage(LinkedList<Serie> results, JTextPane searchResultsTextPane, SearchPanel searchPanel);
+    void handleShowResultsImage(LinkedList<Serie> results, JTextPane searchResultsTextPane);
 
     void searchSeriesImage();
 }

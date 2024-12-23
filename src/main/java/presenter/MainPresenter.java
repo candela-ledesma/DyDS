@@ -77,55 +77,13 @@ public class MainPresenter implements SeriesPresenter {
     }
 
     @Override
-    public void handleShowResults(LinkedList<Serie> results, JTextPane searchResultsTextPane, SearchPanel searchPanel) {
-        JPopupMenu searchOptionsMenu = new JPopupMenu("Search Results");
-
-        for (Serie searchResult : results) {
-            String title = searchResult.getTitle();
-            boolean hasScore = model.hasScore(title);
-            String displayTitle = hasScore ? "★ " + title : title;
-
-            SerieMenuItem menuItem = new SerieMenuItem(displayTitle, searchResult.getSnippet());
-            view.setMenuItem(menuItem);
-
-            menuItem.addActionListener(actionEvent -> {
-                lastSearchedSeries = searchResult;
-                try {
-                    getSelectedExtract(searchResult);
-                } catch (SQLException e) {
-                    showError(e.getMessage());
-                }
-            });
-
-            searchOptionsMenu.add(menuItem);
-        }
-        searchOptionsMenu.show(searchResultsTextPane, searchResultsTextPane.getX(), searchResultsTextPane.getY());
+    public void handleShowResults(LinkedList<Serie> results, JTextPane searchResultsTextPane) {
+        searchPresenter.handleShowResults(results, searchResultsTextPane);
     }
 
     @Override
-    public void handleShowResultsImage(LinkedList<Serie> results, JTextPane searchResultsTextPane, SearchPanel searchPanel) {
-        JPopupMenu searchOptionsMenu = new JPopupMenu("Search Results");
-
-        for (Serie searchResult : results) {
-            String title = searchResult.getTitle();
-            boolean hasScore = model.hasScore(title);
-            String displayTitle = hasScore ? "★ " + title : title;
-
-            SerieMenuItem menuItem = new SerieMenuItem(displayTitle, searchResult.getSnippet());
-            view.setMenuItem(menuItem);
-
-            menuItem.addActionListener(actionEvent -> {
-                lastSearchedSeries = searchResult;
-                try {
-                    getSelectedExtractImage(searchResult);
-                } catch (SQLException e) {
-                    showError(e.getMessage());
-                }
-            });
-
-            searchOptionsMenu.add(menuItem);
-        }
-        searchOptionsMenu.show(searchResultsTextPane, searchResultsTextPane.getX(), searchResultsTextPane.getY());
+    public void handleShowResultsImage(LinkedList<Serie> results, JTextPane searchResultsTextPane) {
+        searchPresenter.handleShowResultsImage(results, searchResultsTextPane);
     }
 
     private void getSelectedExtractImage(Serie searchResult) throws SQLException {
@@ -189,5 +147,23 @@ public class MainPresenter implements SeriesPresenter {
 
     public SeriesView getView() {
         return view;
+    }
+
+    public void handleMenuItemClick(Serie searchResult) {
+        lastSearchedSeries = searchResult;
+        try {
+            getSelectedExtract(searchResult);
+        } catch (SQLException e) {
+            showError("Error getting extract for series: " + searchResult.getTitle());
+        }
+    }
+
+    public void handleMenuItemClickImage(Serie searchResult) {
+        lastSearchedSeries = searchResult;
+        try {
+            getSelectedExtractImage(searchResult);
+        } catch (SQLException e) {
+            showError("Error getting extract for series: " + searchResult.getTitle());
+        }
     }
 }
