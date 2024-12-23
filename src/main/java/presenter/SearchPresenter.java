@@ -25,12 +25,20 @@ public class SearchPresenter {
 
     public void searchSeries() {
         new Thread(() -> {
+            if(view.getSearchSerieField().isEmpty()) {
+                view.showErrorMessage("Please enter a series name");
+                return;
+            }
             view.showResults(getListOfSeries());
         }).start();
     }
 
     public void searchSeriesImage() {
         new Thread(() -> {
+            if(view.getSearchSerieField().isEmpty()){
+                view.showErrorMessage("Please enter a series name");
+                return;
+            }
             view.showResultsImage(getListOfSeries());
         }).start();
     }
