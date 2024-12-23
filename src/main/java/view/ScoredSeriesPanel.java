@@ -29,7 +29,6 @@ public class ScoredSeriesPanel extends JPanel implements View {
     }
 
 
-
     public void setUpView() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         initializeTableModel();

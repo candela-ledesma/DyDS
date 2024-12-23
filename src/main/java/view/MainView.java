@@ -30,7 +30,8 @@ public class MainView implements SeriesView, View {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(400, 428);
+        frame.setSize(500, 528);
+        frame.setLocationRelativeTo(null);
 
         setUpPanels();
 

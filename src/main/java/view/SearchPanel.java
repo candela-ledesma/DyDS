@@ -10,7 +10,6 @@ import java.awt.*;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import static utils.HtmlTextFormatter.textToHtmlWithImage;
 
 public class SearchPanel extends JPanel implements View {
     private JPanel searchPanel;

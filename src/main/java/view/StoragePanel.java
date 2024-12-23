@@ -6,6 +6,7 @@ import javax.swing.event.HyperlinkEvent;
 
 import utils.HtmlTextFormatter;
 
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class StoragePanel extends JPanel implements View {
@@ -36,28 +37,24 @@ public class StoragePanel extends JPanel implements View {
     @Override
     public void showView() {
         setUpComboBox();
-
         setUpStoredInfoTextPane();
-
         setUpPopupMenu();
-
     }
 
     private void setUpStoredInfoTextPane() {
         storedInfoTextPane.setContentType("text/html");
-        storedInfoTextPane.setEditable(false);
 
-        storedInfoTextPane.addHyperlinkListener(event -> {
-            if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+        storedInfoTextPane.addHyperlinkListener(e -> {
+            if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
                 try {
-                    java.awt.Desktop.getDesktop().browse(event.getURL().toURI());
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Failed to open the link: " + event.getURL(),
-                            "Error", JOptionPane.ERROR_MESSAGE);
+                    Desktop.getDesktop().browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    presenter.showError("Error opening browser");
                 }
             }
         });
     }
+
 
 
     void setUpPopupMenu() {
