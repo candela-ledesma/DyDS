@@ -4,6 +4,8 @@ import model.database.DataBase;
 
 import java.sql.SQLException;
 
+import static utils.HtmlTextFormatter.formatContent;
+
 public class StoredModel {
     private DataBase database;
 
@@ -16,12 +18,12 @@ public class StoredModel {
         return database.getTitles().stream().sorted().toArray();
     }
 
-    public void saveLocally(String title, String extract, String imageUrl, String wikiUrl) throws SQLException {
-        database.saveInfo(title, extract, imageUrl, wikiUrl);
+    public void saveLocally(String title, String content) throws SQLException {
+        database.saveInfo(title, content);
     }
 
     public void saveStoredInfo(String title, String extract) throws SQLException {
-        database.saveInfo(title, extract, null,null);
+        database.saveInfo(title, extract);
     }
 
     public String getExtract(String title) throws SQLException {

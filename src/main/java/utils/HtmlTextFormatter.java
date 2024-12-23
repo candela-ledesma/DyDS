@@ -66,5 +66,17 @@ public class HtmlTextFormatter {
         return builder.toString();
     }
 
+    public static String formatContent(String extract, String imageUrl, String wikiUrl) {
+        if (imageUrl != null && wikiUrl != null) {
+            return textToHtmlWithImageAndHyperLink(extract, imageUrl, wikiUrl);
+        } else if (imageUrl != null) {
+            return textToHtmlWithImage(extract, imageUrl);
+        } else if (wikiUrl != null) {
+            return textToHtmlWithHyperlink(extract, wikiUrl);
+        } else {
+            return extract;
+        }
+    }
+
 
 }

@@ -43,6 +43,7 @@ public class StoragePanel extends JPanel implements View {
 
     private void setUpStoredInfoTextPane() {
         storedInfoTextPane.setContentType("text/html");
+        storedInfoTextPane.setEditable(true);
 
         storedInfoTextPane.addHyperlinkListener(e -> {
             if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {

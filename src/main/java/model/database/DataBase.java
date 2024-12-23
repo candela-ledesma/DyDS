@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DataBase {
 
-    void saveInfo(String title, String extract, String imageUrl, String wikiUrl) throws SQLException;
+    void saveInfo(String title, String extract) throws SQLException;
 
     ArrayList<String> getTitles() throws SQLException;
 

@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import static utils.HtmlTextFormatter.formatContent;
+
 public class MainModel implements SeriesModel {
     private final SearchModel searchModel;
     private final StoredModel storedModel;
@@ -90,8 +92,9 @@ public class MainModel implements SeriesModel {
 
     @Override
     public void saveLocally() {
+        String content = formatContent(presenter.getLastSearchedSeries().getExtract(), presenter.getLastSearchedSeries().getCoverImageUrl(), presenter.getLastSearchedSeries().getUrl());
         try {
-            storedModel.saveLocally(presenter.getLastSearchedSeries().getTitle(), presenter.getLastSearchedSeries().getExtract(), presenter.getLastSearchedSeries().getCoverImageUrl(), presenter.getLastSearchedSeries().getUrl());
+            storedModel.saveLocally(presenter.getLastSearchedSeries().getTitle(), content);
         } catch (SQLException e) {
             presenter.showError("Error saving locally");
         }
