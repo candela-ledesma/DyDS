@@ -10,11 +10,6 @@ A modular and scalable system for managing TV series, designed with MVP architec
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Architecture](#architecture)
-6. [Testing](#testing)
-7. [Contributing](#contributing)
-8. [License](#license)
 
 ---
 
