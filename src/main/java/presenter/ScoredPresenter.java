@@ -18,6 +18,7 @@ public class ScoredPresenter {
     }
 
     public void recordScore() throws SQLException {
+
         Serie lastSearchedSeries = view.getLastSearchedSeries();
         if (lastSearchedSeries != null) {
             int newScore = view.getScore();
